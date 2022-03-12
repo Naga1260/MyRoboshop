@@ -3,24 +3,49 @@ if [ id -u != 0]; then
   echo run the script with sudo
 fi
 
-
 yum install nginx -y
-echo $?
+if [echo $? == 0]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
 systemctl enable nginx
-echo $?
+if [echo $? == 0]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
 systemctl start nginx
-echo$?
+if [echo $? == 0]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+   exit 2
 
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-echo $?
+if [ echo $? == 0]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
+
 cd /usr/share/nginx/html
 rm -rf *
-unzip /tmp/frontend.zip
-mv frontend-main/* .
-mv static/* .
-rm -rf frontend-main README.md
-echo $?
+unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .
+if [ echo $? == 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-echo$?
+if [ echo $? == 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
 systemctl restart nginx
-echo $?
+if [echo $? == 0 ]; then
+  echo -e "\e[32mSUCCESS\e[0m"
+else
+  echo -e "\e[31mFAILURE\e[0m"
+  exit 2
