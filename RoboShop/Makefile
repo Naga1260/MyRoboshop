@@ -16,13 +16,13 @@ mongodb:
 	bash Components/Mongodb.sh
 
 mysql:
-	bash Compoenents/MYSql.sh
+	bash Components/MYSql.sh
 
 payment:
 	bash Components/Payment.sh
 
 rabbitmq:
-	bash: Components/RabbitMQ.sh
+	bash Components/RabbitMQ.sh
 
 redis:
 	bash Components/redis.sh
