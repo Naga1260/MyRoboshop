@@ -2,26 +2,26 @@
 
 source Components/common.sh
 
-echo -e "\e[34mInstalling NGINX package\e[0m"
-yum install nginx -y
+print "Installing NGINX package"
+yum install nginx -y $>>LOG_FILE
 check $?
-echo -e "\e[34mEnable NGINX service\e[0m"
-systemctl enable nginx
+print "Enable NGINX service"
+systemctl enable nginx $>>LOG_FILE
 check $?
-echo -e "\e[34mSTART NGINX Service\e[0m"
-systemctl start nginx
+print "START NGINX Service"
+systemctl start nginx $>>LOG_FILE
 check $?
-echo -e "\e[34mDownload the frontend content\e[0m"
-curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
+print "Download the frontend content"
+curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip" $>>LOG_FILE
 check $?
-echo -e "\e[34mmanage the content\e[0m"
+print "manage the content"
 cd /usr/share/nginx/html
 rm -rf *
-unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .
+unzip /tmp/frontend.zip $>>LOG_FILE && mv frontend-main/* .  $>>LOG_FILE && mv static/* . $>>LOG_FILE
 check $?
-echo -e "\e[34mcopy config file\e[0m"
+print "copy config file"
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 check $?
-echo -e "\e[34mrestrat NGINX service\e[0m"
-systemctl restart nginx
+print "restrat NGINX service"
+systemctl restart nginx $>>LOG_FILE
 check $?

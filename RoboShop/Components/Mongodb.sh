@@ -3,35 +3,38 @@
 source Components/common.sh
 
 echo this is Mongodb
-echo -e "\e[34mDownloading files\e[0m"
+print "Downloading files"
 curl -f -s -o /etc/yum.repos.d/mongodb.repo https://raw.githubusercontent.com/roboshop-devops-project/mongodb/main/mongo.repo
 check $?
 
-echo -e "\e[34mInstall MongoDB\e[0m"
-yum install -y mongodb-org
+print "Install MongoDB"
+yum install -y mongodb-org $>>LOG_FILE
 check $?
 
-echo -e "\e[34mEnable MongoDB Service\e[0m"
-systemctl enable mongod
-check $?
-echo -e "\e[34mStart MongoDB service\e[0m"
-systemctl start mongod
+print "Enable MongoDB Service"
+systemctl enable mongod $>>LOG_FILE
 check $?
 
-echo -e "\e[34mUpdate mongodb listen address\e[0m"
+print "Start MongoDB service"
+systemctl start mongod $>>LOG_FILE
+check $?
+
+print "Update mongodb listen address"
 sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 check $?
-echo -e "\e[34mRestart MongoDB service\e[0m"
-systemctl restart mongod
-check $?
-echo -e "\e[34mDownloading mongodb  content\e[0m"
-curl -f -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
+
+print "Restart MongoDB service"
+systemctl restart mongod $>>LOG_FILE
 check $?
 
-echo -e "\e[34mmove the content\e[0m"
-cd /tmp && unzip mongodb.zip && cd mongodb-main
+print "Downloading mongodb  content"
+curl -f -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip" $>>LOG_FILE
 check $?
-echo -e "\e[34mupdate database\e[0m"
+
+print "move the content"
+cd /tmp $>>LOG_FILE && unzip mongodb.zip $>>LOG_FILE && cd mongodb-main $>>LOG_FILE
+check $?
+print "update database"
 mongo < catalogue.js
 mongo < users.js
 check $?
