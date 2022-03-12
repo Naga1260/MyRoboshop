@@ -22,7 +22,7 @@ fi
 check $?
 
 print "change user to roboshop"
-su - roboshop
+sudo su - roboshop
 check $?
 
 print "download the catalogue"
