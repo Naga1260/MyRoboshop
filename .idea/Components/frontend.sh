@@ -6,61 +6,35 @@ if [ $USER_ID -ne 0]; then
   exit 1
 fi
 
+Check(){
+  if [ $1 -eq 0 ]; then
+    echo -e "\e[32mSUCCESS\e[0m"
+  else
+    echo -e "\e[31mFAILURE\e[0m"
+    exit 2
+  fi
+}
+
 echo Installing NGINX package
 yum install nginx -y
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
 echo Enable NGINX service
 systemctl enable nginx
-if [  $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
 echo START NGINX Service
 systemctl start nginx
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
 echo Download the frontend content
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+chec()
 echo manage the content
 cd /usr/share/nginx/html
 rm -rf *
 unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
 echo copy config file
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
 echo restrat NGINX service
 systemctl restart nginx
-if [ $? -eq 0 ]; then
-  echo -e "\e[32mSUCCESS\e[0m"
-else
-  echo -e "\e[31mFAILURE\e[0m"
-  exit 2
-fi
+check()
