@@ -14,3 +14,12 @@ check() {
     exit 2
   fi
 }
+
+print() {
+  echo "\n-------------------$1------------------" &>>$LOG_FILE
+  echo "\e[32m $1 \e[0m"
+
+}
+
+LOG_FILE=/tmp/roboshop.log
+rm -f $LOG_FILE
