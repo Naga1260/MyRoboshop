@@ -21,7 +21,7 @@ else
 fi
 #check $?
 
-print "sudo to the user roboshop"
+print "change user to roboshop"
 su roboshop
 print "download the catalogue"
 curl -f -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip" &>>LOG_FILE
@@ -36,7 +36,7 @@ npm install &>>LOG_FILE
 check $?
 
 print "move to root user"
-logout
+exit
 check $?
 print "Updte Mongo_dns"
 sed -i -e 's/MONGO_DNSNAME/172.31.83.93/' /home/roboshop/catalogue/systemd.service
