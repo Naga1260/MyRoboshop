@@ -13,13 +13,13 @@ yum install nodejs gcc-c++ -y  &>>LOG_FILE
 check $?
 
 print "create a roboshop user"
-robo_id=$(id roboshop)
-if [ "$robo_id" -eq 0 ]; then
+id -u roboshop
+if [ "$?" -eq 0 ]; then
   echo -e "\e[31mUser existed\e[0m"
 else
  useradd roboshop
 fi
-#check $?
+check $?
 
 print "change user to roboshop"
 su - roboshop
