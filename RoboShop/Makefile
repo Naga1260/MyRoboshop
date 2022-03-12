@@ -16,7 +16,7 @@ mongodb:
 	bash Components/Mongodb.sh
 
 mysql:
-	bash Components/MYSql.sh
+	bash Components/MySql.sh
 
 payment:
 	bash Components/Payment.sh
