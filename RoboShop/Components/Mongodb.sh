@@ -28,7 +28,6 @@ echo -e "\e[34mDownloading mongodb  content\e[0m"
 curl -f -s -L -o /tmp/mongodb.zip "https://github.com/roboshop-devops-project/mongodb/archive/main.zip"
 check $?
 
-
 echo -e "\e[34mmove the content\e[0m"
 cd /tmp && unzip mongodb.zip && cd mongodb-main
 check $?
