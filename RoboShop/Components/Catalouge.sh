@@ -19,7 +19,7 @@ if [ "$robo_id" -eq 0 ]; then
 else
  useradd roboshop
 fi
-check $?
+#check $?
 
 print "sudo to the user roboshop"
 su roboshop
