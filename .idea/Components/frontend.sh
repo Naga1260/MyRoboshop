@@ -23,7 +23,7 @@ systemctl enable nginx
 check $?
 echo START NGINX Service
 systemctl start nginx
-check $?1
+check 0
 echo Download the frontend content
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
 chec $?
