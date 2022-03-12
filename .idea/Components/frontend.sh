@@ -23,3 +23,4 @@ echo $?
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 echo$?
 systemctl restart nginx
+echo $?
