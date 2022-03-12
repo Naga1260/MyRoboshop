@@ -1,19 +1,6 @@
 #!/bin/bash
 
-USER_ID=$(id -u)
-if [ $USER_ID -ne 0]; then
-  echo "run the script with sudo"
-  exit 1
-fi
-
-check() {
-  if [ $1 -eq 0 ]; then
-    echo -e "\e[32mSUCCESS\e[0m"
-  else
-    echo -e "\e[31mFAILURE\e[0m"
-    exit 2
-  fi
-}
+source Components/common.sh
 
 echo Installing NGINX package
 yum install nginx -y
