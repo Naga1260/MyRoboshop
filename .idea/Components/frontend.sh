@@ -6,7 +6,7 @@ if [ $USER_ID -ne 0]; then
   exit 1
 fi
 
-Check(){
+Check() {
   if [ $1 -eq 0 ]; then
     echo -e "\e[32mSUCCESS\e[0m"
   else
@@ -17,24 +17,24 @@ Check(){
 
 echo Installing NGINX package
 yum install nginx -y
-check()
+check $?
 echo Enable NGINX service
 systemctl enable nginx
-check()
+check $?
 echo START NGINX Service
 systemctl start nginx
-check()
+check $?
 echo Download the frontend content
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-chec()
+chec $?
 echo manage the content
 cd /usr/share/nginx/html
 rm -rf *
 unzip /tmp/frontend.zip && mv frontend-main/* . && mv static/* .
-check()
+check $?
 echo copy config file
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-check()
+check $?
 echo restrat NGINX service
 systemctl restart nginx
-check()
+check $?
