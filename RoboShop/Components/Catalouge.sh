@@ -23,6 +23,7 @@ check $?
 
 print "change user to roboshop"
 su - roboshop
+check $?
 
 print "download the catalogue"
 curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
