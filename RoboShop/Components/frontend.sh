@@ -13,7 +13,7 @@ systemctl start nginx
 check $?
 echo -e "\e[34mDownload the frontend content\e[0m"
 curl -f -s -L -o /tmp/frontend.zip "https://github.com/roboshop-devops-project/frontend/archive/main.zip"
-chec $?
+check $?
 echo -e "\e[34mmanage the content\e[0m"
 cd /usr/share/nginx/html
 rm -rf *
