@@ -19,7 +19,7 @@ systemctl start mongod
 check $?
 
 echo -e "\e[34mUpdate mongodb listen address\e[0m"
-sed -e -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf
 
 echo -e "\e[34mRestart MongoDB service\e[0m"
 systemctl restart mongod
