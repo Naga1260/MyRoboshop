@@ -1,11 +1,14 @@
 #!/bin/bash
 
-if [ id -u != 0]; then
+USER_ID=$(id -u)
+if [ $USER_ID -ne 0]; then
   echo "run the script with sudo"
+  exit 1
 fi
 
+echo Installing NGNIX package
 yum install nginx -y
-if [  $? -eq 0 ]; then
+if [ $? -eq 0 ]; then
   echo -e "\e[32mSUCCESS\e[0m"
 else
   echo -e "\e[31mFAILURE\e[0m"
