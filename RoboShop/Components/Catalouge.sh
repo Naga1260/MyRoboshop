@@ -22,15 +22,18 @@ fi
 check $?
 
 print "change user to roboshop"
-sudo su - roboshop
+
 
 
 print "download the catalogue"
-curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
-check $?
+sudo su - roboshop && curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
+
 
 print "move the content and unzip"
-cd /home/roboshop &>>LOG_FILE && unzip /tmp/catalogue.zip &>>LOG_FILE && mv catalogue-main catalogue &>>LOG_FILE && cd /home/roboshop/catalogue &>>LOG_FILE
+cd /home/roboshop &>>LOG_FILE
+unzip /tmp/catalogue.zip &>>LOG_FILE
+mv catalogue-main catalogue &>>LOG_FILE
+cd /home/roboshop/catalogue &>>LOG_FILE
 check $?
 
 print "install npm"
