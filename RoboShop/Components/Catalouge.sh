@@ -22,11 +22,11 @@ fi
 check $?
 
 print "change user to roboshop"
-
+sudo su - roboshop
 
 
 print "download the catalogue"
-sudo su - roboshop && curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/roboshop-devops-project/catalogue/archive/main.zip"
 
 
 print "move the content and unzip"
