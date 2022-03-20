@@ -13,5 +13,10 @@ security_group=$(aws ec2 describe-security-groups --filters Name=group-name,Valu
 echo $AMI_ID
 echo $security_group
 
-
-#aws ec2 run-instances --image-id ${AMI_ID} --instance-type t2.micro --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" | jq
+aws ec2 run-instances \
+  --image-id ${AMI_ID} \
+  --instance-type t2.micro \
+  --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" \
+  --security-group-ids $security_group \
+  --instance-market-options "MarketType=spot,SpotOptions={SpotInstanceType=persistent,InstanceInterruptionBehavior=stop}" \
+  | jq
