@@ -1,0 +1,7 @@
+---
+- name: Start front-end server
+  hosts: FRONT-END
+  tasks:
+   - roles:
+       Front-end
+       

@@ -1,0 +1,7 @@
+front-end ansible-host=44.202.253.19 ansible_user=centos ansible_ssh_password=DevOps321
+
+
+
+
+[FRONT-END]
+front-end
