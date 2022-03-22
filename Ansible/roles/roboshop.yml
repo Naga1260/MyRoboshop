@@ -1,6 +1,6 @@
 ---
 - name: Start front-end server
   hosts: FRONTEND
-  tasks:
-   - role:
-       frontend
+  become: yes
+  roles:
+   - frontend
