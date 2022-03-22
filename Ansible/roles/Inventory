@@ -1,4 +1,4 @@
-frontend  ansible_host=44.202.253.19 ansible_user=centos ansible_ssh_password=DevOps321 StrictHostKeyChecking=no UserKnownHostsFile=/dev/null
+frontend  ansible_host=44.202.253.19 ansible_user=centos ansible_ssh_password=DevOps321
 
 
 [FRONTEND]
