@@ -1,3 +1,32 @@
-- name: Front end server installation
-  ansible.builtin.debug:
-    msg: "Hello World"
+- name: Install nginx
+  ansible.builtin.yum:
+    name: nginx
+    state: present
+
+- name: Start nginx service
+  ansible.builtin.systemd:
+    name: nginx
+    state: started
+    enabled: yes
+
+- name: remove the default content
+  ansible.builtin.file:
+    path: /usr/share/nginx/html
+    state: absent
+
+- name: download the file and unzip
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: copy the content to nginx path
+  ansible.builtin.copy:
+    src: /tmp/frontend-main/static/
+    dest: /usr/share/nginx/html/
+    remote_src: yes
+
+- name: Start nginx service
+  ansible.builtin.service:
+    name: nginx
+    state: restarted
