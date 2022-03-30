@@ -8,11 +8,10 @@
     path: /usr/share/nginx/html
     state: absent
 
-- name: download.yml the file and unzip
-  ansible.builtin.unarchive:
-    src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
-    dest: /tmp
-    remote_src: yes
+- name: download the file and unzip
+  include_role:
+    name: common
+    task_from: download
 
 - name: copy the content to nginx path
   ansible.builtin.copy:
