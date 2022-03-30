@@ -1,11 +1,23 @@
----
-- name: Start front-end server
-  hosts: frontend
+#---
+#- name: Start front-end server
+#  hosts: frontend
+#  become: yes
+#  roles:
+#   - frontend
+#- name: start mongodb server
+#  hosts: mongodb
+#  become: yes
+#  roles:
+#    - mongodb
+#
+#- name: start catalogue server
+#  hosts: catalogue
+#  become: yes
+#  roles:
+#    - catalogue
+
+- name: RoboShop setup
   become: yes
+  hosts: '{{HOST}}'
   roles:
-   - frontend
-- name: start mongodb server
-  hosts: mongodb
-  become: yes
-  roles:
-    - mongodb
+    - "{{role_name}}"
