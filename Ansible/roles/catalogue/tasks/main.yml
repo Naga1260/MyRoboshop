@@ -49,8 +49,9 @@
 - name: Strat  catalogue service
   ansible.builtin.service:
     name: catalogue
-    state: started
+    state: restarted
     enabled: yes
+    daemon_realod: yes
 
 
 
