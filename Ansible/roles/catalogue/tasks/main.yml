@@ -41,6 +41,17 @@
   community.general.npm:
     path: /home/roboshop/catalogue
 
+- name: copy systemd  file
+  ansible.builtin.copy:
+    src: systemd.service
+    dest: /etc/systemd/system/catalogue.service
+
+- name: Strat  catalogue service
+  ansible.builtin.service:
+    name: catalogue
+    state: started
+    enabled: yes
+
 
 
 
