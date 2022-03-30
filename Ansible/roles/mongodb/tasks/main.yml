@@ -27,15 +27,7 @@
     dest: /tmp
     remote_src: yes
 
-- name: upload the mongodb schema
-  community.mongodb.mongodb_shell:
-    file: "/tmp/mongodb-main/{{item}}.js"
-    idempotent: yes
-  with_items:
-    - catalogue
-    - users
-
-- name: Run a js file containing MongoDB commands with pseudo-idempotency
+- name: Load mongodb schema
   community.mongodb.mongodb_shell:
     file: "/tmp/mongodb-main/{{item}}.js"
     idempotent: yes
