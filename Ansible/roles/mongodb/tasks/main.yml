@@ -29,9 +29,9 @@
 
 - name: upload the mongodb schema
   community.mongodb.mongodb_shell:
-    file: /tmp/mongodb-main/{{ item }}.js
+    file: /tmp/mongodb-main/{{item}}.js
     idempotent: yes
-  loops:
+  with_items:
     - catalogue
     - users
 
