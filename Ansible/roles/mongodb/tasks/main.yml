@@ -1,0 +1,37 @@
+
+- name: copy mongodb repo file
+  ansible.builtin.copy:
+    src: maongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
+
+- name: Install MongoDB
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: installed
+
+- name: replace bindIP address
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
+
+- name: Start MongoDB service
+  ansible.builtin.service:
+    name: mongodb
+    state: started
+    enabled: yes
+
+- name: download the mongodb schema and unzip
+  ansible.builtin.unarchive:
+    src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
+    dest: /tmp
+    remote_src: yes
+
+- name: upload the mongodb schema
+  community.mongodb.mongodb_shell:
+    file: /tmp/mongodb-main/{{ item }}.js
+    idempotent: yes
+  loops:
+    - catalogue
+    - users
+
