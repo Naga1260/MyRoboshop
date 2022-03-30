@@ -38,6 +38,6 @@
 #2. Now, lets set up the service with systemctl.
 
 
-- name: Setup Catalogue server
+- name: Install the required packages
   debug:
     msg: enter the server name
