@@ -37,7 +37,43 @@
 #
 #2. Now, lets set up the service with systemctl.
 
+- name: Configure YUM repos
+  ansible.builtin.shell: curl -fsSL https://rpm.nodesource.com/setup_lts.x | bash -
 
 - name: Install the required packages
-  debug:
-    msg: enter the server name
+  ansible.builtin.yum:
+    name:
+      - nodejs
+      - gcc-c++
+    state: installed
+
+- name: Add app User
+  ansible.builtin.user:
+    name: roboshop
+    comment: roboshop project applicatopn user
+
+- name: Download and Extrat
+  include_role:
+    name: common
+    tasks_from: download
+
+- name: cleanup the old content
+  ansible.builtin.file:
+    path: /home/roboshop/catalogue
+    state: absent
+
+- name: Copy the content
+  ansible.builtin.copy:
+    src: /tmp/catalogue-main
+    dest: /home/roboshop/catalogue
+    remote_src: yes
+  become_user: roboshop
+
+- name: Install npm package
+  yum:
+    name: npm
+    state: installed
+
+
+
+
