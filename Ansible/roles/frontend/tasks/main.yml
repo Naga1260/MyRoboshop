@@ -8,7 +8,7 @@
     path: /usr/share/nginx/html
     state: absent
 
-- name: download the file and unzip
+- name: download.yml the file and unzip
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/frontend/archive/main.zip
     dest: /tmp

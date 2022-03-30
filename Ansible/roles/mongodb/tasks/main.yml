@@ -4,7 +4,6 @@
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongodb.repo
 
-
 - name: Install MongoDB
   ansible.builtin.yum:
     name: mongodb-org
@@ -22,7 +21,7 @@
     state: started
     enabled: yes
 
-- name: download the mongodb schema and unzip
+- name: download.yml the mongodb schema and unzip
   ansible.builtin.unarchive:
     src: https://github.com/roboshop-devops-project/mongodb/archive/main.zip
     dest: /tmp
