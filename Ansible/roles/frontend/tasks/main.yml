@@ -8,7 +8,7 @@
     path: /usr/share/nginx/html
     state: absent
 
-- name: download the file and unzip
+- name: Download  and Extract
   include_role:
     name: common
     task_from: download
