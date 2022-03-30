@@ -4,3 +4,8 @@
   become: yes
   roles:
    - frontend
+- name: start mongodb server
+  hosts: mongodb
+  become: yes
+  roles:
+    - mongodb

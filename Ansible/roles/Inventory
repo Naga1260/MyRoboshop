@@ -1,5 +1,9 @@
 frontend  ansible_host=172.31.80.59 ansible_user=centos ansible_ssh_password=DevOps321
-
+mongodb  ansible_host=172.31.24.133 ansible_user=centos ansible_ssh_password=DevOps321
 
 [FRONTEND]
 frontend
+
+[mongodbd]
+mongodb
+
