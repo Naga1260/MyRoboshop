@@ -24,7 +24,7 @@
 - name: Download  and Extract
   include_role:
     name: common
-    task_from: download
+    tasks_from: download
 
 - name: Load mongodb schema
   community.mongodb.mongodb_shell:
